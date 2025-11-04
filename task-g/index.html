@@ -30,19 +30,16 @@
                     <div class="form-row">
                         <label for="courseName">Full Name</label>
                         <input id="courseName" name="courseName" type="text" required
-                            placeholder="e.g., Jhon Landerberg"
-                            pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ]+)$"
+                            placeholder="e.g., Jhon Landerberg" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ]+)$"
                             oninvalid="this.setCustomValidity('Please enter your full name (two words only)')"
-                            oninput="this.setCustomValidity('')"
-                            >
+                            oninput="this.setCustomValidity('')">
                     </div>
 
                     <div>
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="example@centria.fi" required
-                        oninvalid="this.setCustomValidity('Please enter your personal email')"
-                            oninput="this.setCustomValidity('')"
-                            >
+                            oninvalid="this.setCustomValidity('Please enter your personal email (preferably @centria.fi)')"
+                            oninput="this.setCustomValidity('')">
                     </div>
 
                     <div> <label for="tel">Telephone number</label> <input type="tel" name="phone"
@@ -53,7 +50,13 @@
 
                     <div>
                         <label for="date">Birth date</label>
-                        <input type="date" name="birthdate" required>
+                        <input type="date" name="birthdate" required 
+                        onfocus="this.max = new Date().toISOString().split('T')[0];
+                        const minDate = new Date();
+                        minDate.setFullYear(minDate.getFullYear() - 18);
+                        this.max = new Date().toISOString().split('T')[0];
+                        this.min = minDate.toISOString().split('T')[0];"
+                        title="You must be at least 18 years old and not born in the future">
                     </div>
 
                     <fieldset class="days-group">
