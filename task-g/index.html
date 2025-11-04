@@ -31,7 +31,8 @@
                         <label for="courseName">Full Name</label>
                         <input id="courseName" name="courseName" type="text" required
                             placeholder="e.g., Jhon Landerberg"
-                            oninvalid="this.setCustomValidity('Please enter your full name')"
+                            pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ]+)$"
+                            oninvalid="this.setCustomValidity('Please enter your full name (two words only)')"
                             oninput="this.setCustomValidity('')"
                             >
                     </div>
