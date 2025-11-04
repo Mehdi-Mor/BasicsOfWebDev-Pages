@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <!--
+    Author: Mehdi Tahari
+    Date: 2025-10-20
+  -->
+
+    <header class="site-header">
+        <h1>User Registration</h1>
+    </header>
+
+    <main class="content">
+        <!-- Top row split into two blocks -->
+        <div class="top-grid">
+            <!-- Controls (70%): add course + day marks -->
+            <section class="controls" aria-label="Add course row">
+                <h2 class="controls-title">Add User</h2>
+
+                <form id="addCourseForm">
+                    <input type="hidden" id="timestamp" name="timestamp">
+                    <div class="form-row">
+                        <label for="courseName">Full Name</label>
+                        <input id="courseName" name="courseName" type="text" required
+                            placeholder="e.g., Jhon Landerberg"
+                            oninvalid="this.setCustomValidity('Please enter your full name')"
+                            oninput="this.setCustomValidity('')"
+                            >
+                    </div>
+
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="example@centria.fi" required
+                        oninvalid="this.setCustomValidity('Please enter your personal email')"
+                            oninput="this.setCustomValidity('')"
+                            >
+                    </div>
+
+                    <div> <label for="tel">Telephone number</label> <input type="tel" name="phone"
+                            placeholder="+358 XX XXX XXXX" required pattern="^\+358\d{7,10}$"
+                            oninvalid="this.setCustomValidity('Please enter a valid Finnish phone number starting with +358')"
+                            oninput="this.setCustomValidity('')">
+                    </div>
+
+                    <div>
+                        <label for="date">Birth date</label>
+                        <input type="date" name="birthdate" required>
+                    </div>
+
+                    <fieldset class="days-group">
+                        <legend>Accept terms and conditions</legend>
+                        <label><input type="checkbox" name="day" value="Mon" required
+                                oninvalid="this.setCustomValidity('You must accept the terms to continue')"
+                                oninput="this.setCustomValidity('')">
+                            I accept
+                        </label>
+                    </fieldset>
+
+                    <div class="form-row">
+                        <button id="addRowBtn" type="submit" class="btn">Add User</button>
+                        <button id="clearBtn" type="reset" class="btn btn-secondary">Clear</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrap">
+            <table class="table" id="timetable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Tel</th>
+                        <th>Birth Date</th>
+                        <th>Terms & Conditions</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+
+</html>
