@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="index.js"></script>
+</head>
+
+<body class="bg-[#f6f8fb] text-[#1f2937] font-sans">
+
+    <!-- HEADER -->
+    <header class="pt-[2rem] pb-[1rem] bg-[#273e73] text-white text-center">
+        <h1 class="text-[1.6rem]"><strong>User Registration</strong></h1>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="ml-[15%] mr-[15%] pt-[1rem] pb-[2rem]">
+
+        <!-- TOP GRID -->
+        <div class="flex gap-[1rem] mb-[1rem] max-[860px]:flex-col">
+
+            <!-- STUDENT INFO -->
+            <section class="flex-[1_1_30%] bg-white border border-[#d0d7e2] rounded-lg p-4 shadow-md">
+                <h2 class="text-[1.1rem] mb-[0.5rem] font-bold">Information</h2>
+                <p>Mehdi Tahari</p>
+                <p>NITS24K</p>
+            </section>
+
+            <!-- CONTROLS -->
+            <section class="flex-[1_1_70%] bg-white border border-[#d0d7e2] rounded-lg p-4 shadow-md">
+                <h2 class="text-[1.1rem] mb-[0.5rem] font-bold">Add User</h2>
+
+                <form id="addCourseForm">
+                    <input type="hidden" id="timestamp" name="timestamp">
+
+                    <!-- Full Name -->
+                    <div class="flex flex-col gap-[0.25rem] mt-[0.5rem]">
+                        <div class="flex gap-[0.5rem] items-center">
+                            <label for="courseName" class="w-32">Full Name</label>
+                            <input id="courseName" name="courseName" type="text"
+                                class="flex-1 p-2 border border-[#d0d7e2] rounded-md" placeholder="e.g., Jhon Landerberg"
+                                required pattern="^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ]+)$"
+                                oninvalid="this.setCustomValidity('Please enter your full name (two words only)')"
+                                oninput="this.setCustomValidity('')">
+                        </div>
+                        <p id="nameError" class="ml-32 mt-1 text-red-600 text-sm hidden">
+                            Please enter your full name (two words only)
+                        </p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex gap-[0.5rem] items-center mt-[0.5rem]">
+                        <label for="email" class="w-32">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="flex-1 p-2 border border-[#d0d7e2] rounded-md" placeholder="example@centria.fi"
+                            required
+                            oninvalid="this.setCustomValidity('Please enter a valid email (preferably @centria.fi)')"
+                            oninput="this.setCustomValidity('')">
+                    </div>
+
+                    <!-- Telephone -->
+                    <div class="flex gap-[0.5rem] items-center mt-[0.5rem]">
+                        <label for="tel" class="w-32">Telephone</label>
+                        <input type="tel" name="phone" class="flex-1 p-2 border border-[#d0d7e2] rounded-md"
+                            placeholder="+358 XX XXX XXXX" required pattern="^\+358\d{7,10}$"
+                            oninvalid="this.setCustomValidity('Please enter a Finnish phone number starting with +358')"
+                            oninput="this.setCustomValidity('')">
+                    </div>
+
+                    <!-- Birth Date -->
+                    <div class="flex gap-[0.5rem] items-center mt-[0.5rem]">
+                        <label class="w-32">Birth Date</label>
+                        <input type="date" name="birthdate" class="flex-1 p-2 border border-[#d0d7e2] rounded-md">
+                        <p class="text-xs text-gray-500 italic mt-1">
+                            You must be at least 18 years old.
+                        </p>
+                    </div>
+
+                    <!-- Terms -->
+                    <fieldset class="my-[1rem] border p-2">
+                        <legend class="font-bold text-[#334155]">Accept terms and conditions</legend>
+
+                        <label class="flex items-center gap-[0.5rem]">
+                            <input type="checkbox" name="day" value="Mon" required
+                                oninvalid="this.setCustomValidity('You must accept the terms to continue')"
+                                oninput="this.setCustomValidity('')">
+                            I accept
+                        </label>
+                    </fieldset>
+
+                    <!-- Buttons -->
+                    <div class="flex gap-3 mt-4">
+                        <button id="addRowBtn" type="submit"
+                            class="px-[0.8rem] py-[0.45rem] border border-[#d0d7e2] rounded-md bg-[#f8fafc] hover:bg-[#eef2f7] cursor-pointer">
+                            Add User
+                        </button>
+
+                        <button id="clearBtn" type="reset"
+                            class="px-[0.8rem] py-[0.45rem] border border-[#d0d7e2] rounded-md bg-white hover:bg-[#eef2f7] cursor-pointer">
+                            Clear
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+
+        <!-- TABLE -->
+        <div class="bg-white border border-[#d0d7e2] rounded-lg p-[1rem] shadow-lg overflow-x-auto">
+
+            <table id="timetable"
+                class="w-[100%] border-collapse text-[1rem] [&>tbody>tr>td:nth-child(n+2)]:text-center">
+                <thead>
+                    <tr class="bg-[#273e73] text-white">
+                        <th class="text-left px-3 py-2 border-b border-[#d0d7e2] w-[40%]">Name</th>
+                        <th class="px-3 py-2 border-b border-[#d0d7e2] w-[12%]">Email</th>
+                        <th class="px-3 py-2 border-b border-[#d0d7e2] w-[12%]">Tel</th>
+                        <th class="px-3 py-2 border-b border-[#d0d7e2] w-[12%]">Birth Date</th>
+                        <th class="px-3 py-2 border-b border-[#d0d7e2] w-[12%]">Terms</th>
+                        <th class="px-3 py-2 border-b border-[#d0d7e2] w-[12%]">Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
