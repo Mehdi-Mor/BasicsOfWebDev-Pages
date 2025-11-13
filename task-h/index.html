@@ -63,7 +63,7 @@
                     <!-- Telephone -->
                     <div class="flex gap-[0.5rem] items-center mt-[0.5rem]">
                         <label for="tel" class="w-32">Telephone</label>
-                        <input type="tel" name="phone" class="flex-1 p-2 border border-[#d0d7e2] rounded-md"
+                        <input type="tel" id="tel" name="phone" class="flex-1 p-2 border border-[#d0d7e2] rounded-md"
                             placeholder="+358 XX XXX XXXX" required pattern="^\+358\d{7,10}$"
                             oninvalid="this.setCustomValidity('Please enter a Finnish phone number starting with +358')"
                             oninput="this.setCustomValidity('')">
